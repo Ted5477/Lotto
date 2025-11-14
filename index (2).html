@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EuroJackpot Strategic Number Generator</title>
+    <style>
+        :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+  --color-bg-6: rgba(249, 115, 22, 0.08);
+  --color-bg-7: rgba(236, 72, 153, 0.08);
+  --color-bg-8: rgba(6, 182, 212, 0.08);
+
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+  --focus-ring: 0 0 0 3px var(--color-focus-ring);
+  --focus-outline: 2px solid var(--color-primary);
+  --status-bg-opacity: 0.15;
+  --status-border-opacity: 0.25;
+  --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+  --color-success-rgb: 33, 128, 141;
+  --color-error-rgb: 192, 21, 47;
+  --color-warning-rgb: 168, 75, 47;
+  --color-info-rgb: 98, 108, 113;
+
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --letter-spacing-tight: -0.01em;
+
+  --space-0: 0;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+
+    --color-bg-1: rgba(29, 78, 216, 0.15);
+    --color-bg-2: rgba(180, 83, 9, 0.15);
+    --color-bg-3: rgba(21, 128, 61, 0.15);
+    --color-bg-4: rgba(185, 28, 28, 0.15);
+    --color-bg-5: rgba(107, 33, 168, 0.15);
+    --color-bg-6: rgba(194, 65, 12, 0.15);
+    --color-bg-7: rgba(190, 24, 93, 0.15);
+    --color-bg-8: rgba(8, 145, 178, 0.15);
+
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-primary-active: var(--color-teal-800);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-error: var(--color-red-400);
+    --color-success: var(--color-teal-300);
+    --color-warning: var(--color-orange-400);
+    --color-info: var(--color-gray-300);
+    --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+    --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+    --color-success-rgb: var(--color-teal-300-rgb);
+    --color-error-rgb: var(--color-red-400-rgb);
+    --color-warning-rgb: var(--color-orange-400-rgb);
+    --color-info-rgb: var(--color-gray-300-rgb);
+  }
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2')
+    format('woff2');
+}
+
+html {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: var(--space-20);
+  min-height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: var(--space-32);
+}
+
+.header h1 {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-12);
+    color: var(--color-text);
+}
+
+.header p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.controls {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+    margin-bottom: var(--space-24);
+}
+
+.controls-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-16);
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-20);
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.control-group label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+}
+
+.control-group select {
+    padding: var(--space-8) var(--space-32) var(--space-8) var(--space-12);
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: var(--select-caret-light);
+    background-repeat: no-repeat;
+    background-position: right var(--space-12) center;
+    background-size: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .control-group select {
+    background-image: var(--select-caret-dark);
+  }
+}
+
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+}
+
+.toggle-switch {
+    position: relative;
+    width: 48px;
+    height: 24px;
+    background: var(--color-secondary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background var(--duration-normal) var(--ease-standard);
+    border: 1px solid var(--color-border);
+}
+
+.toggle-switch.active {
+    background: var(--color-primary);
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: var(--color-surface);
+    border-radius: 50%;
+    transition: transform var(--duration-normal) var(--ease-standard);
+    box-shadow: var(--shadow-sm);
+}
+
+.toggle-switch.active .toggle-slider {
+    transform: translateX(24px);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12) var(--space-32);
+    border-radius: var(--radius-base);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all var(--duration-normal) var(--ease-standard);
+    border: none;
+    text-decoration: none;
+}
+
+.btn--primary {
+    background: var(--color-primary);
+    color: var(--color-btn-primary-text);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn--primary:hover {
+    background: var(--color-primary-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.btn--primary:active {
+    background: var(--color-primary-active);
+}
+
+.btn--secondary {
+    background: var(--color-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.btn--secondary:hover {
+    background: var(--color-secondary-hover);
+}
+
+.btn--large {
+    padding: var(--space-16) var(--space-32);
+    font-size: var(--font-size-xl);
+    width: 100%;
+    max-width: 400px;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.results {
+    margin-bottom: var(--space-24);
+}
+
+.combination-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+    margin-bottom: var(--space-16);
+    box-shadow: var(--shadow-sm);
+    animation: slideIn 0.4s var(--ease-standard);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.combination-header {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-16);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.numbers-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-16);
+    align-items: center;
+    margin-bottom: var(--space-20);
+}
+
+.numbers-section {
+    display: flex;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+.section-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    margin-right: var(--space-8);
+}
+
+.number-ball {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    box-shadow: var(--shadow-md);
+    animation: popIn 0.3s var(--ease-standard) backwards;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.number-ball--main {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+    color: var(--color-cream-50);
+}
+
+.number-ball--euro {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: var(--color-cream-50);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-12);
+    padding-top: var(--space-16);
+    border-top: 1px solid var(--color-card-border-inner);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stat-value {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+}
+
+.info-panel {
+    background: var(--color-bg-1);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+    margin-bottom: var(--space-24);
+}
+
+.info-panel h3 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-16);
+    color: var(--color-text);
+}
+
+.rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-20) 0;
+}
+
+.rules-list li {
+    padding: var(--space-12);
+    margin-bottom: var(--space-8);
+    background: var(--color-surface);
+    border-radius: var(--radius-base);
+    border-left: 3px solid var(--color-primary);
+}
+
+.rule-name {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    display: block;
+    margin-bottom: var(--space-4);
+}
+
+.rule-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.disclaimer {
+    background: var(--color-bg-2);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-base);
+    padding: var(--space-16);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+.disclaimer strong {
+    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+}
+
+.session-stats {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-24);
+    margin-top: var(--space-24);
+}
+
+.session-stats h3 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-16);
+    color: var(--color-text);
+}
+
+.stats-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-16);
+}
+
+.summary-item {
+    padding: var(--space-16);
+    background: var(--color-bg-3);
+    border-radius: var(--radius-base);
+}
+
+.summary-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-4);
+}
+
+.summary-value {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+}
+
+.loading {
+    text-align: center;
+    padding: var(--space-32);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-lg);
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    border-bottom: 1px dotted var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+    .controls-grid {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .numbers-display {
+        justify-content: center;
+    }
+    
+    .number-ball {
+        width: 48px;
+        height: 48px;
+        font-size: var(--font-size-xl);
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>EuroJackpot Strategic Number Generator</h1>
+            <p>Generate balanced combinations based on probability theory and statistical analysis</p>
+        </header>
+
+        <div class="controls">
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label for="numCombinations">Number of Combinations</label>
+                    <select id="numCombinations">
+                        <option value="1" selected>1 Combination</option>
+                        <option value="2">2 Combinations</option>
+                        <option value="3">3 Combinations</option>
+                        <option value="5">5 Combinations</option>
+                        <option value="10">10 Combinations</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label>Use Frequency Weighting</label>
+                    <div class="toggle-wrapper">
+                        <div class="toggle-switch" id="frequencyToggle">
+                            <div class="toggle-slider"></div>
+                        </div>
+                        <span id="frequencyLabel" style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Off</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="btn btn--primary btn--large" id="generateBtn">Generate Numbers</button>
+            </div>
+        </div>
+
+        <div id="resultsContainer" class="results"></div>
+
+        <div class="info-panel">
+            <h3>Strategic Rules Applied</h3>
+            <ul class="rules-list">
+                <li>
+                    <span class="rule-name">Odd/Even Balance</span>
+                    <span class="rule-desc">3 odd + 2 even OR 2 odd + 3 even (65% of theoretical winning combinations)</span>
+                </li>
+                <li>
+                    <span class="rule-name">Low/High Mix</span>
+                    <span class="rule-desc">2-3 numbers from 1-25, remaining from 26-50 (statistically balanced distribution)</span>
+                </li>
+                <li>
+                    <span class="rule-name">Sum Range</span>
+                    <span class="rule-desc">Sum between 95-145 (statistical center of distribution)</span>
+                </li>
+                <li>
+                    <span class="rule-name">Avoid Popularity</span>
+                    <span class="rule-desc">At least 1-2 numbers above 31 (reduces birthday clustering)</span>
+                </li>
+                <li>
+                    <span class="rule-name">No Sequences</span>
+                    <span class="rule-desc">No consecutive numbers (avoid popular patterns that lead to shared jackpots)</span>
+                </li>
+            </ul>
+            
+            <div class="disclaimer">
+                <strong>Important Reminder:</strong> Every combination has EQUAL probability of winning (1 in 139,838,160). This generator helps you avoid popular patterns to reduce jackpot sharing IF you win, but cannot improve your odds of winning.
+            </div>
+        </div>
+
+        <div class="session-stats">
+            <h3>Session Statistics</h3>
+            <div class="stats-summary">
+                <div class="summary-item">
+                    <div class="summary-label">Total Combinations Generated</div>
+                    <div class="summary-value" id="totalGenerated">0</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Average Sum</div>
+                    <div class="summary-value" id="avgSum">-</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Most Common Pattern</div>
+                    <div class="summary-value" id="commonPattern">-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const CONFIG = {
+            mainPool: 50,
+            mainPicks: 5,
+            euroPool: 12,
+            euroPicks: 2,
+            sumMin: 95,
+            sumMax: 145,
+            frequentMain: [8, 21, 33, 12, 11, 13, 14, 46],
+            frequentEuro: [12, 1, 4, 9]
+        };
+
+        // State
+        let useFrequency = false;
+        let sessionStats = {
+            total: 0,
+            sums: [],
+            patterns: { '3/2': 0, '2/3': 0 }
+        };
+
+        // DOM Elements
+        const generateBtn = document.getElementById('generateBtn');
+        const frequencyToggle = document.getElementById('frequencyToggle');
+        const frequencyLabel = document.getElementById('frequencyLabel');
+        const numCombinations = document.getElementById('numCombinations');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const totalGeneratedEl = document.getElementById('totalGenerated');
+        const avgSumEl = document.getElementById('avgSum');
+        const commonPatternEl = document.getElementById('commonPattern');
+
+        // Toggle frequency weighting
+        frequencyToggle.addEventListener('click', () => {
+            useFrequency = !useFrequency;
+            frequencyToggle.classList.toggle('active');
+            frequencyLabel.textContent = useFrequency ? 'On' : 'Off';
+        });
+
+        // Generate button handler
+        generateBtn.addEventListener('click', () => {
+            const count = parseInt(numCombinations.value);
+            generateCombinations(count);
+        });
+
+        // Random number generator with optional frequency weighting
+        function getRandomNumber(min, max, frequentNumbers = []) {
+            if (useFrequency && frequentNumbers.length > 0 && Math.random() < 0.4) {
+                // 40% chance to pick from frequent numbers
+                return frequentNumbers[Math.floor(Math.random() * frequentNumbers.length)];
+            }
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Check if number is odd
+        function isOdd(num) {
+            return num % 2 === 1;
+        }
+
+        // Check for consecutive sequences
+        function hasConsecutive(numbers) {
+            const sorted = [...numbers].sort((a, b) => a - b);
+            for (let i = 0; i < sorted.length - 1; i++) {
+                if (sorted[i + 1] - sorted[i] === 1) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Validate combination against all rules
+        function validateCombination(numbers) {
+            // Rule 1: Odd/Even Balance (3/2 or 2/3)
+            const oddCount = numbers.filter(isOdd).length;
+            const evenCount = numbers.length - oddCount;
+            const oddEvenValid = (oddCount === 3 && evenCount === 2) || (oddCount === 2 && evenCount === 3);
+            
+            // Rule 2: Low/High Mix (2-3 from each range)
+            const lowCount = numbers.filter(n => n <= 25).length;
+            const highCount = numbers.length - lowCount;
+            const lowHighValid = (lowCount >= 2 && lowCount <= 3) && (highCount >= 2 && highCount <= 3);
+            
+            // Rule 3: Sum Range (95-145)
+            const sum = numbers.reduce((a, b) => a + b, 0);
+            const sumValid = sum >= CONFIG.sumMin && sum <= CONFIG.sumMax;
+            
+            // Rule 4: Avoid Popularity (at least 1 number above 31)
+            const above31Count = numbers.filter(n => n > 31).length;
+            const popularityValid = above31Count >= 1;
+            
+            // Rule 5: No Sequences
+            const sequenceValid = !hasConsecutive(numbers);
+            
+            return {
+                valid: oddEvenValid && lowHighValid && sumValid && popularityValid && sequenceValid,
+                oddCount,
+                evenCount,
+                lowCount,
+                highCount,
+                sum,
+                above31Count
+            };
+        }
+
+        // Generate valid main numbers
+        function generateMainNumbers() {
+            let attempts = 0;
+            const maxAttempts = 1000;
+            
+            while (attempts < maxAttempts) {
+                const numbers = new Set();
+                
+                while (numbers.size < CONFIG.mainPicks) {
+                    const num = getRandomNumber(1, CONFIG.mainPool, CONFIG.frequentMain);
+                    numbers.add(num);
+                }
+                
+                const numbersArray = Array.from(numbers);
+                const validation = validateCombination(numbersArray);
+                
+                if (validation.valid) {
+                    return {
+                        numbers: numbersArray.sort((a, b) => a - b),
+                        stats: validation
+                    };
+                }
+                
+                attempts++;
+            }
+            
+            // Fallback: return any valid set (should rarely happen)
+            const numbers = Array.from(new Set([8, 21, 27, 33, 42]));
+            return {
+                numbers,
+                stats: validateCombination(numbers)
+            };
+        }
+
+        // Generate Euro numbers
+        function generateEuroNumbers() {
+            const numbers = new Set();
+            
+            while (numbers.size < CONFIG.euroPicks) {
+                const num = getRandomNumber(1, CONFIG.euroPool, CONFIG.frequentEuro);
+                numbers.add(num);
+            }
+            
+            return Array.from(numbers).sort((a, b) => a - b);
+        }
+
+        // Generate combinations
+        function generateCombinations(count) {
+            resultsContainer.innerHTML = '<div class="loading">Generating your combinations...</div>';
+            
+            // Simulate brief delay for UX
+            setTimeout(() => {
+                resultsContainer.innerHTML = '';
+                
+                for (let i = 0; i < count; i++) {
+                    const mainResult = generateMainNumbers();
+                    const euroNumbers = generateEuroNumbers();
+                    
+                    // Update session stats
+                    sessionStats.total++;
+                    sessionStats.sums.push(mainResult.stats.sum);
+                    const pattern = `${mainResult.stats.oddCount}/${mainResult.stats.evenCount}`;
+                    sessionStats.patterns[pattern]++;
+                    
+                    // Create combination card
+                    const card = createCombinationCard(
+                        i + 1,
+                        mainResult.numbers,
+                        euroNumbers,
+                        mainResult.stats
+                    );
+                    
+                    resultsContainer.appendChild(card);
+                    
+                    // Stagger animation
+                    card.style.animationDelay = `${i * 0.1}s`;
+                }
+                
+                updateSessionStats();
+            }, 300);
+        }
+
+        // Create combination card element
+        function createCombinationCard(index, mainNumbers, euroNumbers, stats) {
+            const card = document.createElement('div');
+            card.className = 'combination-card';
+            
+            card.innerHTML = `
+                <div class="combination-header">Combination #${sessionStats.total - index + 1}</div>
+                <div class="numbers-display">
+                    <div class="numbers-section">
+                        <span class="section-label">Main Numbers:</span>
+                        ${mainNumbers.map((num, idx) => `
+                            <div class="number-ball number-ball--main" style="animation-delay: ${idx * 0.1}s">${num}</div>
+                        `).join('')}
+                    </div>
+                    <div class="numbers-section">
+                        <span class="section-label">Euro Numbers:</span>
+                        ${euroNumbers.map((num, idx) => `
+                            <div class="number-ball number-ball--euro" style="animation-delay: ${(idx + 5) * 0.1}s">${num}</div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">Odd/Even</div>
+                        <div class="stat-value">${stats.oddCount}/${stats.evenCount}</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Low/High</div>
+                        <div class="stat-value">${stats.lowCount}/${stats.highCount}</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Sum</div>
+                        <div class="stat-value">${stats.sum}</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Above 31</div>
+                        <div class="stat-value">${stats.above31Count}</div>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Update session statistics
+        function updateSessionStats() {
+            totalGeneratedEl.textContent = sessionStats.total;
+            
+            if (sessionStats.sums.length > 0) {
+                const avgSum = Math.round(
+                    sessionStats.sums.reduce((a, b) => a + b, 0) / sessionStats.sums.length
+                );
+                avgSumEl.textContent = avgSum;
+            }
+            
+            const pattern32 = sessionStats.patterns['3/2'] || 0;
+            const pattern23 = sessionStats.patterns['2/3'] || 0;
+            
+            if (pattern32 > pattern23) {
+                commonPatternEl.textContent = '3 Odd / 2 Even';
+            } else if (pattern23 > pattern32) {
+                commonPatternEl.textContent = '2 Odd / 3 Even';
+            } else if (pattern32 === pattern23 && pattern32 > 0) {
+                commonPatternEl.textContent = 'Equal Split';
+            }
+        }
+    </script>
+</body>
+</html>
